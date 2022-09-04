@@ -1,0 +1,16 @@
+//SETUP
+@import './setup/variables';
+@import './setup/functions';
+@import './setup/mixins';
+@import './setup/typography';
+
+//BASICS
+@import './basics/base';
+@import './basics/helpers';
+@import './basics/layout';
+
+//PAGES
+@import './pages/home';
+
+//CMPS
+@import './cmp/app-header';
