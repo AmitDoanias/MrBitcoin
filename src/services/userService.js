@@ -8,7 +8,6 @@ const gUsers = []
 const STORAGE_KEY = 'usersDB'
 
 function getUser() {
-    console.log('inside getUser service ')
     // const users = sessionStorageService.loadFromSessiontorage('STORAGE_KEY')
     // if (users) {
     //     return users[0]
