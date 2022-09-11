@@ -1,0 +1,16 @@
+.contact-list {
+    height: 60vh;
+    max-width: 40vw;
+    overflow-y: scroll;
+    padding-inline-end: 10px;
+
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: linear-gradient(90deg, #1199fa, #11d0fa);
+        background-color: #11d0fa;
+    }
+}

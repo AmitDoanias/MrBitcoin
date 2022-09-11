@@ -1,5 +1,30 @@
 .contact-filter {
-    span {
-        color: #96D6F1;
+
+    .title {
+        span {
+            color: #96D6F1;
+        }
     }
+
+    .line {
+        border-bottom: 1px solid white;
+        margin: 12px 0px;
+    }
+
+    .input-container {
+        position: relative;
+
+        .search-input {
+            margin-top: 12px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font: inherit;
+            color: white;
+            background-color: #1B2232;
+            outline: 2px solid transparent;
+            width: 95%;
+        }
+    }
+
 }

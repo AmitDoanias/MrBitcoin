@@ -19,11 +19,6 @@ export const HomePage = () => {
         setUserRate(userRate)
     }
 
-    // const loadUserRate = async () => {
-    // const userRate = await bitcoinService.getRate(user.coins)
-    // setUserRate(userRate)
-    // }
-
     console.log('user', user)
 
     if (!user) return <div>Loading..</div>

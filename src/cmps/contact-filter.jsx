@@ -7,11 +7,16 @@ export const ContactFilter = ({ handleChange }) => {
 
 
     return <div className="contact-filter flex-basis50">
-        <div>
+
+        <div className="title">
             <h1><span>Filter your friends </span>by <br></br> their names or phone numbers</h1>
         </div>
-
-        <input onChange={handleChange} className="search-input" type="text" placeholder="Search by name and phone number" value={filterBy} />
+        <div className="line"></div>
+        <div className="input-container">
+            <p>Don't stay with any open checks...</p>
+            <input onChange={handleChange} className="search-input" type="text" placeholder="Search by name and phone number" value={filterBy} id="search" />
+            <label htmlFor="search" className="input-label"></label>
+        </div>
 
     </div>
 }

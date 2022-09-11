@@ -4,35 +4,77 @@ import { utilService } from "./utilService"
 
 export const contactService = {
     query,
-    getContactById
+    getContactById,
+    getEmptyContact,
+    saveContact,
+    removeContact,
+    getNextContactId
 }
 
-const API_KEY = 'contactDB'
+const STORAGE_KEY = 'contactDB'
 
+// function query(filterBy = null) {
+//     let contacts = localStorageService.loadFromLStorage(API_KEY)
+//     if (!contacts || !contacts.length) {
+//         contacts = _createContacts()
+//         localStorageService.saveToLStorage(API_KEY, contacts)
+//     }
+//     if (filterBy) {
+//         const regEx = new RegExp(filterBy, 'i')
+//         contacts = contacts.filter(contact => regEx.test(contact.name) || contact.phone.includes(+filterBy))
+//     }
+//     return Promise.resolve(contacts)
+// }
 
-function query(filterBy = null) {
-    console.log('queryyyyyyy', filterBy)
-    let contacts = localStorageService.loadFromLStorage(API_KEY)
+async function query(filterBy = null) {
+    let contacts = await localStorageService.query(STORAGE_KEY)
+
+    let contactsToDisplay = contacts
     if (!contacts || !contacts.length) {
         contacts = _createContacts()
-        localStorageService.saveToLStorage(API_KEY, contacts)
+        localStorageService.saveToLStorage(STORAGE_KEY, contacts)
     }
     if (filterBy) {
-        console.log('filterBy from service', filterBy)
         const regEx = new RegExp(filterBy, 'i')
-        const contacts = contacts.filter(contact => regEx.test(contact.name) || contact.phone.includes(+filterBy))
-        return Promise.resolve(contacts)
+        contactsToDisplay = contacts.filter(contact => regEx.test(contact.name) || contact.phone.includes(+filterBy))
     }
-    return Promise.resolve(contacts)
+    return Promise.resolve(contactsToDisplay)
 }
 
-async function getContactById(id) {
+// async function getContactById(id) {
+//     const contacts = await query()
+//     return new Promise((resolve, reject) => {
+//         console.log('contacts', contacts)
+//         const contact = contacts.find(contact => contact._id === id)
+//         contact ? resolve(contact) : reject(`Contact id ${id} not found! `)
+//     })
+// }
+
+async function getContactById(contactId) {
+    return localStorageService.get(STORAGE_KEY, contactId)
+}
+
+async function saveContact(contactToSave) {
+    return localStorageService.put(STORAGE_KEY, contactToSave)
+}
+
+async function removeContact(contactId) {
+    return localStorageService.remove(STORAGE_KEY, contactId)
+}
+
+function getEmptyContact() {
+    return {
+        name: '',
+        email: '',
+        phone: ''
+    }
+}
+
+async function getNextContactId(id) {
     const contacts = await query()
-    return new Promise((resolve, reject) => {
-        console.log('contacts', contacts)
-        const contact = contacts.find(contact => contact._id === id)
-        contact ? resolve(contact) : reject(`Contact id ${id} not found! `)
-    })
+    const contactIdx = contacts.findIndex(contact => contact._id === id)
+    const nextIdx = contactIdx + 1 > contacts.length ? 0 : contactIdx + 1
+    return contacts[nextIdx]._id
 }
 
 function _createContacts() {

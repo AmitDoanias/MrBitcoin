@@ -11,5 +11,6 @@ export const ContactPreview = ({ contact }) => {
             <h4>{contact.name}</h4>
             <p>{contact.email}</p>
         </div>
+
     </div>
 }

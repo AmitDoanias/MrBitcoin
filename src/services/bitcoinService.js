@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { localStorageService } from './storageService'
+import { utilService } from './utilService'
+
 
 export const bitcoinService = {
     getRate,
@@ -18,7 +20,14 @@ async function getRate(value) {
 }
 
 async function getMarketPrice() {
-    return await _getCharts('market-price')
+    // return await _getCharts('market-price')
+    const data = await _getCharts('market-price')
+    let marketPrice = data.values
+    marketPrice.forEach(price => {
+        price.date = utilService.getTime(price.x)
+        delete price.x
+    })
+    return marketPrice
 }
 
 async function getAvgBlockSize() {
@@ -36,6 +45,14 @@ async function _getCharts(chart) {
     localStorageService.saveToLStorage(chart, res.data)
     return res.data
 }
+
+getMarketPrice()
+function getTime(date) {
+    const dateToShow = new Date(date * 1000)
+    return dateToShow.toLocaleDateString("en-US")
+}
+
+
 
 
 
