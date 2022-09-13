@@ -1,4 +1,5 @@
 import { contactService } from "../../services/contactService"
+import { showErrorMsg, showSuccessMsg } from "../../services/eventBusService"
 
 
 
@@ -30,8 +31,10 @@ export function saveContact(contact) {
             const actionType = (contact._id) ? 'UPDATE_CONTACT' : 'ADD_CONTACT'
             const savedContact = await contactService.saveContact(contact)
             dispatch({ type: actionType, contact: savedContact })
+            showSuccessMsg('Contact Saved')
 
         } catch (err) {
+            showErrorMsg('Failed to save contact')
             console.log('Cannot save contact', err)
         }
     }
@@ -42,7 +45,9 @@ export function removeContact(contactId) {
         try {
             await contactService.removeContact(contactId)
             dispatch({ type: 'REMOVE_CONTACT', contactId })
+            showSuccessMsg('Contact Deleted')
         } catch (err) {
+            showErrorMsg('Failed to delete contact')
             console.log(`Cannot Delete ${contactId}`)
         }
     }

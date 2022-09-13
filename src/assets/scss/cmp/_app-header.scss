@@ -1,6 +1,6 @@
 .app-header {
     margin-bottom: 1em;
-    box-shadow: 0px 3px black;
+    box-shadow: 0px 3px #0f1c39;
 
     .logo {
         max-height: 60px;
@@ -10,11 +10,11 @@
         text-align: center;
         width: 100px;
         padding: 1.5em 0;
-        border-inline-end: 1px solid black;
+        border-inline-end: 1px solid #1199fa;
         cursor: pointer;
 
         &:first-of-type {
-            border-inline-start: 1px solid black;
+            border-inline-start: 1px solid #1199fa;
         }
 
         &:hover:not(.active) {

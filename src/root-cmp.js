@@ -5,6 +5,7 @@ import { Contact } from './pages/contact'
 import { ContactDetails } from './pages/contact-details'
 import { ContactEdit } from './pages/contact-edit'
 import { Statitics } from './pages/statitics'
+import { UserMsg } from './cmps/user-msg'
 
 
 export function App() {
@@ -18,6 +19,7 @@ export function App() {
         <Route path='/contact' component={Contact} />
         <Route path='/' component={HomePage} />
       </Switch>
+      <UserMsg />
     </main>
   </div>
 }

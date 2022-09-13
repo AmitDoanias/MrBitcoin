@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { ContactList } from "../cmps/contact-list"
 import { ContactFilter } from "../cmps/contact-filter"
-import { loadContacts, setFilterBy } from "../store/actions/contactActions"
+import { loadContacts, setFilterBy, removeContact } from "../store/actions/contactActions"
 import { ContactEdit } from "./contact-edit"
 import { useState } from "react"
 
@@ -21,6 +21,7 @@ export const Contact = () => {
     const handleChange = async ({ target }) => {
         dispatch(setFilterBy(target.value))
     }
+
 
     return <div className="contact flex direction-column">
         <div className="contact-container flex gap25">

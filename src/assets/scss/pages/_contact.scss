@@ -16,6 +16,10 @@
             padding: 8px 16px;
             border: none;
             cursor: pointer;
+
+            &:hover {
+                color: #1199fa;
+            }
         }
     }
 }

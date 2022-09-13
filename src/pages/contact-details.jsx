@@ -31,9 +31,9 @@ export const ContactDetails = () => {
         history.push('/contact')
     }
 
-    const onRemoveContact = (contactId) => {
+    const onRemoveContact = async (contactId) => {
         console.log('contactId', contactId)
-        dispatch(removeContact(contactId))
+        await dispatch(removeContact(contactId))
         onGoBack()
     }
 
@@ -71,7 +71,6 @@ export const ContactDetails = () => {
                 </div>
 
             </div>
-
 
             {/* {editContact && <ContactEdit contactId={contact._id} />} */}
         </div>
